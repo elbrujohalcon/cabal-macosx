@@ -14,5 +14,5 @@ guiApps = [MacApp "WxHello"
                   Nothing -- Build a default Info.plist for the icon.
                   [] -- No other resources.
                   [] -- No other binaries.
-                  DoNotChase -- Try changing to ChaseWithDefaults
+                  ChaseWithDefaults
           ]

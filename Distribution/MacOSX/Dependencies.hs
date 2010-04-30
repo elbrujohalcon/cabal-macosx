@@ -66,6 +66,7 @@ import System.Directory
 import System.FilePath
 import System.IO
 import System.Process
+import System.Exit
 import Text.ParserCombinators.Parsec
 
 import Distribution.MacOSX.Common
@@ -206,11 +207,10 @@ updateDependency appPath app src tgt =
      let cmd = iTool ++ " -change " ++ show tgt ++ " " ++ show tgt' ++
                    " " ++ show newLib
      --putStrLn cmd
-     runCommand cmd
+     ExitSuccess <- system cmd
      return ()
   where tgt' = "@executable_path/../Frameworks/" </> makeRelative "/" tgt
-        newLib = if src == appName app then src
-                 else appPath </> pathInApp app src
+        newLib = appPath </> pathInApp app src
 
 -- | Path to @otool@ tool.
 oTool :: FilePath
